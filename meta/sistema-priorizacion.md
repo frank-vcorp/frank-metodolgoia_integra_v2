@@ -2,7 +2,7 @@
 
 ## 🎯 Objetivo
 
-Establecer un sistema consistente para evaluar, priorizar y gestionar tareas en el proyecto, permitiendo a todos los agentes (SOFIA, CODEX, GEMINI) tomar decisiones informadas sobre qué trabajar primero.
+Establecer un sistema consistente para evaluar, priorizar y gestionar tareas en el proyecto, permitiendo a todos los agentes (CODEX, IMPLEMENTACION, GEMINI) tomar decisiones informadas sobre qué trabajar primero.
 
 ---
 
@@ -16,7 +16,7 @@ Cada tarea en `PROYECTO.md` debe incluir estos metadatos:
 **Metadatos:**
 - 🎯 **Prioridad:** [🔴 Alta | 🟡 Media | 🟢 Baja]
 - ⏱️ **Estimación:** [Xh Ym]
-- 👤 **Asignado:** [SOFIA | CODEX | GEMINI | Sin asignar]
+- 👤 **Asignado:** [IMPLEMENTACION | CODEX | GEMINI | Sin asignar]
 - 📦 **Sprint:** [Sprint X | Backlog]
 - 🏷️ **Tags:** `#feature` `#bug` `#refactor` `#docs` `#test`
 - 🔗 **Dependencias:** [IDs de tareas previas]

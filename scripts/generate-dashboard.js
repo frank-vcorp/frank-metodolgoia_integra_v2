@@ -15,6 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { readProyecto, parseProyecto } = require('./lib/proyecto-parser');
 
 // Configuration
 const CONFIG = {
@@ -40,7 +41,7 @@ function log(message, color = 'reset') {
 }
 
 // Parse PROYECTO.md
-function parseProyecto(content) {
+function parseProyectoLocal(content) {
   const tasks = [];
   const lines = content.split('\n');
   
@@ -92,7 +93,7 @@ function parseProyecto(content) {
       currentTask.estimation = hours + minutes / 60;
     }
     
-    const assignedMatch = line.match(/Asignado:\*\*\s+(SOFIA|CODEX|GEMINI|Sin asignar)/);
+    const assignedMatch = line.match(/Asignado:\*\*\s+([A-Za-zÀ-ÿ0-9 _]+|Sin asignar)/);
     if (assignedMatch) currentTask.assigned = assignedMatch[1];
     
     const sprintMatch = line.match(/Sprint:\*\*\s+(.+)/);
@@ -131,9 +132,9 @@ function generateStats(tasks) {
     },
     
     byAgent: {
-      SOFIA: tasks.filter(t => t.assigned === 'SOFIA').length,
+      Implementacion: tasks.filter(t => t.assigned && t.assigned.toLowerCase().includes('implement')).length,
       CODEX: tasks.filter(t => t.assigned === 'CODEX').length,
-      GEMINI: tasks.filter(t => t.assigned === 'GEMINI').length,
+      GEMINI: tasks.filter(t => t.assigned && t.assigned.toUpperCase().includes('GEMINI')).length,
       unassigned: tasks.filter(t => !t.assigned || t.assigned === 'Sin asignar').length
     },
     
@@ -180,7 +181,7 @@ function generateDashboard(stats, tasks) {
   const specCount = countFiles(CONFIG.contextDir);
   const adrCount = countFiles(CONFIG.adrDir);
   
-  let md = `# 📊 Dashboard del Proyecto Farianergy\n\n`;
+  let md = `# 📊 Dashboard del Proyecto (Metodología INTEGRA)\n\n`;
   md += `> **Generado automáticamente** | Fecha: ${dateStr} ${timeStr}\n\n`;
   md += `---\n\n`;
   
@@ -215,9 +216,9 @@ function generateDashboard(stats, tasks) {
   md += `## 👥 Distribución por Agente\n\n`;
   md += `| Agente | Tareas Asignadas | Carga |\n`;
   md += `|--------|------------------|-------|\n`;
-  md += `| SOFIA | ${stats.byAgent.SOFIA} | ${progressBar((stats.byAgent.SOFIA / stats.total) * 100, 10)} |\n`;
+  md += `| Implementacion | ${stats.byAgent.Implementacion} | ${progressBar((stats.byAgent.Implementacion / stats.total) * 100, 10)} |\n`;
   md += `| CODEX | ${stats.byAgent.CODEX} | ${progressBar((stats.byAgent.CODEX / stats.total) * 100, 10)} |\n`;
-  md += `| GEMINI | ${stats.byAgent.GEMINI} | ${progressBar((stats.byAgent.GEMINI / stats.total) * 100, 10)} |\n`;
+  md += `| GEMINI / Gemini Code Assist | ${stats.byAgent.GEMINI} | ${progressBar((stats.byAgent.GEMINI / stats.total) * 100, 10)} |\n`;
   md += `| Sin asignar | ${stats.byAgent.unassigned} | — |\n\n`;
   
   // Documentation metrics
@@ -366,7 +367,7 @@ function main() {
     
     // Read PROYECTO.md
     log('📖 Leyendo PROYECTO.md...', 'blue');
-    const proyectoContent = fs.readFileSync(CONFIG.projectFile, 'utf-8');
+    const proyectoContent = readProyecto(CONFIG.projectFile);
     
     // Parse tasks
     log('🔍 Parseando tareas...', 'blue');
@@ -402,4 +403,4 @@ if (require.main === module) {
 }
 
 // Export for testing
-module.exports = { parseProyecto, generateStats, generateDashboard };
+module.exports = { parseProyecto: parseProyectoLocal, generateStats, generateDashboard };

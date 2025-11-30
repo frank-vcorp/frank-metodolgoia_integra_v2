@@ -1,5 +1,5 @@
 {
-  "name": "Farianergy App - Metodología INTEGRA",
+  "name": "TU PROYECTO - Metodología INTEGRA",
   "description": "Configuración de Continue.dev optimizada para desarrollo con agentes IA usando metodología INTEGRA",
   "version": "1.0.0",
   
@@ -74,7 +74,7 @@
   ],
 
   "agents": {
-    "SOFIA": {
+    "IMPLEMENTACION": {
       "role": "Arquitecta de Soluciones y Planificación",
       "capabilities": [
         "Análisis de requisitos",
@@ -126,7 +126,7 @@
         "meta/prompts/aria_kickoff.txt"
       ],
       "workflow": [
-        "1. Recibir handoff de SOFIA (leer tarea en PROYECTO.md)",
+        "1. Recibir handoff del arquitecto (leer tarea en PROYECTO.md)",
         "2. Implementar endpoints API y lógica",
         "3. Escribir tests unitarios e integración",
         "4. Ejecutar pnpm lint y pnpm test",
@@ -194,7 +194,7 @@
         "**Metadatos:**",
         "- 🎯 **Prioridad:** ${3|🔴 Alta,🟡 Media,🟢 Baja|}",
         "- ⏱️ **Estimación:** ${4:X}h ${5:Y}m",
-        "- 👤 **Asignado:** ${6|SOFIA,CODEX,GEMINI,Sin asignar|}",
+        "- 👤 **Asignado:** ${6|IMPLEMENTACION,CODEX,GEMINI,Sin asignar|}",
         "- 📦 **Sprint:** ${7:Sprint X}",
         "- 🏷️ **Tags:** ${8:#tag}",
         "- 🔗 **Dependencias:** ${9:Ninguna}",
@@ -220,7 +220,7 @@
         "| Campo | Valor |",
         "|-------|-------|",
         "| **Fecha** | ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE} |",
-        "| **Agente** | ${2|SOFIA,CODEX,GEMINI|} |",
+        "| **Agente** | ${2|IMPLEMENTACION,CODEX,GEMINI|} |",
         "| **Tiempo Invertido** | ${3:X}h ${4:Y}m |",
         "| **Estado** | ${5|✅ Completado,🚧 En Progreso,⚠️ Bloqueado|} |",
         "",
@@ -274,7 +274,7 @@
     "handoff": {
       "description": "Template de handoff entre agentes",
       "body": [
-        "## 🤝 Handoff: ${1|SOFIA,CODEX,GEMINI|} → ${2|SOFIA,CODEX,GEMINI|}",
+        "## 🤝 Handoff: ${1|IMPLEMENTACION,CODEX,GEMINI|} → ${2|IMPLEMENTACION,CODEX,GEMINI|}",
         "",
         "**Fecha:** ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
         "**Tarea:** [${3:ID}] ${4:Nombre}",
@@ -473,7 +473,7 @@
   "meta": {
     "version": "1.0.0",
     "lastUpdated": "2025-11-08",
-    "maintainers": ["SOFIA", "CODEX", "GEMINI"],
+    "maintainers": ["IMPLEMENTACION", "CODEX", "GEMINI"],
     "changelog": [
       "1.0.0 - Initial configuration for INTEGRA methodology"
     ]

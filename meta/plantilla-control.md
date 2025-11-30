@@ -1,7 +1,7 @@
 # Checkpoint: [Título Breve]
 
 **Fecha:** [YYYY-MM-DD HH:MM]  
-**Autor:** [CODEX/SOFIA/GEMINI]  
+**Autor:** [CODEX/IMPLEMENTACION/GEMINI]  
 **Estado del Proyecto:** [En Progreso/Bloqueado/Completado]  
 
 ---
@@ -68,9 +68,9 @@
 ---
 
 ## Próximos Pasos
-1. [Paso 1]: [Descripción] - **Asignado a:** [SOFIA/GEMINI] - **ETA:** [Fecha]
-2. [Paso 2]: [Descripción] - **Asignado a:** [SOFIA/GEMINI] - **ETA:** [Fecha]
-3. [Paso 3]: [Descripción] - **Asignado a:** [SOFIA/GEMINI] - **ETA:** [Fecha]
+1. [Paso 1]: [Descripción] - **Asignado a:** [IMPLEMENTACION/GEMINI] - **ETA:** [Fecha]
+2. [Paso 2]: [Descripción] - **Asignado a:** [IMPLEMENTACION/GEMINI] - **ETA:** [Fecha]
+3. [Paso 3]: [Descripción] - **Asignado a:** [IMPLEMENTACION/GEMINI] - **ETA:** [Fecha]
 
 ---
 

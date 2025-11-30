@@ -2,7 +2,7 @@
 
 ## 🎯 Objetivo
 
-Establecer un protocolo claro y consistente para la transferencia de trabajo entre agentes (SOFIA, CODEX, GEMINI) que garantice continuidad, contexto completo y cero pérdida de información.
+Establecer un protocolo claro y consistente para la transferencia de trabajo entre agentes (CODEX, IMPLEMENTACION, GEMINI) que garantice continuidad, contexto completo y cero pérdida de información.
 
 ---
 
@@ -230,7 +230,7 @@ pnpm run dev --filter @farianergy/web
 
 **Cuándo:** Un bloqueador impide continuar y otro agente debe resolverlo.
 
-**Ejemplo:** GEMINI bloqueado esperando endpoint → SOFIA decide arquitectura → CODEX implementa
+**Ejemplo:** GEMINI bloqueado esperando endpoint → asistente de implementación decide arquitectura → CODEX implementa
 
 **Énfasis:**
 - Documentar claramente el bloqueador
@@ -243,7 +243,7 @@ pnpm run dev --filter @farianergy/web
 
 **Cuándo:** Trabajo completo que requiere revisión antes de marcar como done.
 
-**Ejemplo:** CODEX termina feature → SOFIA revisa arquitectura → GEMINI valida UX
+**Ejemplo:** CODEX termina feature → asistente de implementación revisa arquitectura → GEMINI valida UX
 
 **Énfasis:**
 - Listar todos los archivos cambiados
@@ -267,10 +267,10 @@ pnpm run dev --filter @farianergy/web
 
 ## 📝 Ejemplos Completos
 
-### Ejemplo 1: SOFIA → GEMINI (Spec completa, implementar UI)
+### Ejemplo 1: IMPLEMENTACION → GEMINI (Spec completa, implementar UI)
 
 ```markdown
-## 🤝 Handoff: SOFIA → GEMINI
+## 🤝 Handoff: IMPLEMENTACION → GEMINI
 
 **Fecha:** 2025-11-08 14:30
 **Tarea:** [T-045] Implementar Dashboard de Equipos
@@ -436,7 +436,7 @@ curl http://localhost:3000/api/equipos?tipo=generador&estado=disponible
 
 ---
 
-**Firma:** SOFIA
+**Firma:** IMPLEMENTACION
 **Timestamp:** 2025-11-08 14:30:00
 ```
 
@@ -615,10 +615,10 @@ curl -X POST http://localhost:3000/api/rentas \
 
 ---
 
-### Ejemplo 3: CODEX → SOFIA (Necesita decisión arquitectónica)
+### Ejemplo 3: CODEX → IMPLEMENTACION (Necesita decisión arquitectónica)
 
 ```markdown
-## 🤝 Handoff: CODEX → SOFIA
+## 🤝 Handoff: CODEX → IMPLEMENTACION
 
 **Fecha:** 2025-11-08 10:20
 **Tarea:** [T-067] Implementar Sistema de Notificaciones
@@ -662,7 +662,7 @@ Implementar sistema de notificaciones para alertar a usuarios sobre:
 
 ### 🎯 Próximos Pasos
 
-**Para SOFIA:**
+**Para IMPLEMENTACION:**
 
 1. **Decidir estrategia de notificaciones**
    - Opciones:
@@ -700,7 +700,7 @@ Implementar sistema de notificaciones para alertar a usuarios sobre:
 
 **Decisiones Pendientes (BLOQUEADOR):**
 - ❓ **Estrategia de notificaciones:**
-  - Necesito que SOFIA decida: Push vs Email vs Hybrid
+  - Necesito que IMPLEMENTACION decida: Push vs Email vs Hybrid
   - Bloqueado hasta tener esta decisión
 
 - ❓ **Frecuencia y timing:**
@@ -715,7 +715,7 @@ Implementar sistema de notificaciones para alertar a usuarios sobre:
 - 🚧 **Falta definición de requisitos:**
   - Tipo: Información
   - Impacto: Alto (no puedo continuar implementación)
-  - Acción requerida: SOFIA debe consultar cliente o definir spec
+  - Acción requerida: IMPLEMENTACION debe consultar cliente o definir spec
   - Workaround: Ninguno, es decisión de negocio
 
 ---
@@ -755,15 +755,15 @@ Implementar sistema de notificaciones para alertar a usuarios sobre:
 - [x] PoC técnico funcionando
 - [x] Documento de comparación
 - [x] PROYECTO.md actualizado con bloqueador
-- [ ] Decisión de arquitectura (pendiente SOFIA)
-- [ ] Spec técnica (pendiente SOFIA)
+- [ ] Decisión de arquitectura (pendiente IMPLEMENTACION)
+- [ ] Spec técnica (pendiente IMPLEMENTACION)
 - [ ] ADR creado (pendiente post-decisión)
 
 ---
 
 **Firma:** CODEX
 **Timestamp:** 2025-11-08 10:20:00
-**Decisión requerida de:** SOFIA
+**Decisión requerida de:** IMPLEMENTACION
 **Bloqueador hasta:** Decisión de estrategia de notificaciones
 ```
 
@@ -819,7 +819,7 @@ Agregar sección al final de la tarea:
 
 #### 🤝 Handoff History
 
-**2025-11-08 14:30 | SOFIA → GEMINI**
+**2025-11-08 14:30 | IMPLEMENTACION → GEMINI**
 - Completado: Spec y wireframes
 - Siguiente: Implementar UI
 - Ver: `Checkpoints/CHK_2025-11-08_1430.md` para detalles
@@ -864,7 +864,7 @@ Archivos: algunos en /api/
 
 ### ❌ Handoff Sin Contexto
 ```markdown
-## Handoff: SOFIA → CODEX
+## Handoff: IMPLEMENTACION → CODEX
 
 Crear endpoint POST /api/clientes
 ```

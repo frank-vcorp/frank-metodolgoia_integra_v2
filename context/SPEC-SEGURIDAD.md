@@ -111,4 +111,4 @@ La aplicación maneja información sensible de clientes, transacciones financier
 **Creado por:** CODEX  
 **Fecha:** 2025-11-07  
 **Estado:** Pendiente  
-**Asignado a:** SOFIA (implementación) + GEMINI (revisión)
+**Asignado a:** IMPLEMENTACION (implementación) + GEMINI (revisión)

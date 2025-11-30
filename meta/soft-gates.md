@@ -16,8 +16,12 @@ Los **Soft Gates** (Puertas de Calidad) son puntos de verificación obligatorios
 
 ## Los 4 Gates Obligatorios
 
-```
-Gate 1: Compilación → Gate 2: Testing → Gate 3: Revisión → Gate 4: Documentación → [✓]
+```mermaid
+flowchart LR
+  G1[Gate 1<br/>Compilación] --> G2[Gate 2<br/>Testing]
+  G2 --> G3[Gate 3<br/>Revisión]
+  G3 --> G4[Gate 4<br/>Documentación]
+  G4 --> DONE[[Tarea [✓] Completada]]
 ```
 
 Cada gate debe pasar **exitosamente** para avanzar al siguiente. Si alguno falla, la tarea vuelve a estado `[/]` para corrección.
@@ -59,7 +63,7 @@ pnpm lint --filter @farianergy/core
 - 💡 Info messages permitidos
 
 ### Responsable
-**SOFIA** ejecuta y verifica Gate 1 antes de pasar a `[V]`.
+CODEX (o GEMINI cuando implementa) ejecuta y verifica Gate 1 antes de pasar a `[V]`.
 
 ### Ejemplo de Fallo
 ```markdown
@@ -72,7 +76,7 @@ pnpm lint --filter @farianergy/core
   - ESLint: 1 error, 3 warnings
     - error: 'paymentId' is defined but never used
   
-  **Acción:** SOFIA corrige errores y re-ejecuta Gate 1
+  **Acción:** el asistente de implementación corrige errores y re-ejecuta Gate 1
 ```
 
 ### Ejemplo de Éxito
@@ -120,7 +124,7 @@ pnpm test:integration
 - ⏭️ Si no existen, documentar como deuda técnica
 
 ### Responsable
-**SOFIA** ejecuta Gate 2 durante estado `[V]`.
+El **asistente de implementación** ejecuta Gate 2 durante estado `[V]`.
 
 ### Excepciones Permitidas
 
@@ -151,7 +155,7 @@ pnpm test:integration
   - Coverage: 65% (objetivo: 80%)
     - Missing: Error handling en processPayment()
   
-  **Acción:** SOFIA vuelve a [/] para corregir tests
+  **Acción:** el asistente de implementación vuelve a [/] para corregir tests
 ```
 
 ### Ejemplo de Éxito
@@ -255,7 +259,7 @@ Garantizar calidad, mantenibilidad y seguridad del código mediante auditoría h
   2. Agregar comentario explicativo en cálculo de impuestos (línea 67)
   3. Extraer constante `TAX_RATE = 0.16`
   
-  **Sin bloqueo:** SOFIA puede hacer cambios sin volver a [/]
+  **Sin bloqueo:** el asistente de implementación puede hacer cambios sin volver a [/]
   **Re-review:** No requerido (cambios triviales)
 ```
 
@@ -387,7 +391,7 @@ export function calculateTax(amount: number, taxRate: number): number {
   - ❌ dossier_tecnico.md sin decisión de usar Stripe
   - ❌ Función calculateTax() sin JSDoc
   
-  **Acción:** CODEX solicita a SOFIA completar documentación
+  **Acción:** CODEX solicita al asistente de implementación completar documentación
   **Tiempo estimado:** 30 min
 ```
 
@@ -410,10 +414,10 @@ export function calculateTax(amount: number, taxRate: number): number {
 | Resultado Gates | Próximo Estado | Acción Requerida |
 |----------------|---------------|------------------|
 | ✅✅✅✅ | `[✓]` | Marcar como completado |
-| ❌... | `[/]` | SOFIA corrige |
-| ✅❌.. | `[/]` | SOFIA corrige tests |
-| ✅✅❌. | `[/]` | SOFIA refactoriza según GEMINI |
-| ✅✅✅❌ | `[/]` | SOFIA/CODEX completan docs |
+| ❌... | `[/]` | Asistente de implementación corrige |
+| ✅❌.. | `[/]` | Asistente de implementación corrige tests |
+| ✅✅❌. | `[/]` | Asistente de implementación refactoriza según GEMINI |
+| ✅✅✅❌ | `[/]` | Asistente de implementación/CODEX completan docs |
 | ⏭️⏭️⏭️⏭️ | `[!]` | Bloqueador crítico, escalar |
 
 ---
@@ -504,5 +508,5 @@ jobs:
 
 **Versión:** 1.0  
 **Autor:** Frank Saavedra  
-**IA Colaboradora:** Verdent (Claude Sonnet 4)  
+**IA Colaboradora:** Gemini Code Assist  
 **Fecha:** 2025-11-08

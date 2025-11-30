@@ -19,7 +19,7 @@
   - Se elige la herramienta más ligera que resuelva el problema eficientemente.
   - Si algo puede hacerse en **Apps Script**, no se escala a **Cloud Run**.
   - Si basta con **Sheets o JSON local**, no se implementa una base de datos compleja.
-  - Si se requiere integración avanzada, CODEX y SOFIA lo resuelven mediante conectores o middleware.
+  - Si se requiere integración avanzada, CODEX y/o GEMINI CODE ASSIST lo resuelven mediante conectores o middleware.
 
 - **Interoperabilidad Técnica (Puentes):**
   CODEX genera y documenta conectores hacia:
@@ -40,17 +40,11 @@
 - Explica el porqué de cada decisión técnica o estratégica.
 - Supervisa la sincronización entre VS Code, Continue y GitHub.
 
-#### 🧩 SOFIA – Constructora Principal
-- Ejecuta, prueba, documenta y valida los entregables técnicos.
-- Puede solicitar mentoría a GEMINI.
-- Tiene autoridad para crear archivos y carpetas directamente en el workspace.
-- Supervisa los commits automáticos y confirma la integridad del código antes de cada push.
-
-#### ⚙️ GEMINI – Ingeniero Mentor y Segundo Programador
+#### 🧩 GEMINI CODE ASSIST – Revisor, Mentor y Segundo Implementador
 - Propone optimizaciones, audita decisiones técnicas y explica conceptos cuando se le solicita.
-- No actúa como mentor a menos que Frank lo pida explícitamente.
 - Verifica compatibilidad de dependencias, calidad del código y mantiene alineación con los estándares de la Metodología Integra.
 - **Aplica estrictamente las convenciones de `meta/SPEC-CODIGO.md` en cada revisión.**
+- Puede asumir tareas de CODEX (planificación e implementación) cuando sea necesario.
 
 #### 👑 FRANK – Director de Proyecto (humano)
 - Supervisa, valida y aprueba los entregables.
@@ -88,8 +82,8 @@
 
 ### V. Flujo de Roles
 1. **CODEX** inicia y organiza tareas en PROYECTO.md.
-2. **SOFIA** ejecuta construcción, documentación y validación.
-3. **GEMINI** asesora o revisa el código técnico bajo solicitud.
+2. **CODEX** ejecuta construcción, documentación y validación en la mayoría de los casos.
+3. **GEMINI CODE ASSIST** revisa el código técnico y, cuando se requiera, también puede implementar o ajustar código siguiendo los SPECs.
 4. **FRANK** valida entregables finales y otorga aprobación.
 
 ---
@@ -98,7 +92,7 @@
 - **Trazabilidad total:** Cada cambio genera un registro en `Checkpoints/`.
 - **Control de versiones y respaldos automáticos:**
   - CODEX gestiona la sincronización con GitHub mediante commits automatizados.
-  - Cada checkpoint aprobado por SOFIA genera un commit con formato convencional (`feat`, `fix`, `docs`, etc.).
+  - Cada checkpoint aprobado por el asistente de implementación genera un commit con formato convencional (`feat`, `fix`, `docs`, etc.).
   - Al cierre de tarea `[✓]`, CODEX ejecuta un push automático al repositorio remoto.
   - Los repositorios se sincronizan también con Continue para mantener el contexto de versión actualizado.
 - **Contexto compartido:** Todas las IA conservan sincronía de estado y contexto en Continue y VS Code.
@@ -124,8 +118,8 @@ Esta sección documenta el conjunto de mejoras implementadas para gestión de ta
 
 - **Flujo completo:** `[ ] → [/] → [V] → [R] → [✓] → [X]`
 - **Responsabilidades:**
-  - SOFIA: Actualiza de `[ ]` a `[/]` y luego a `[V]`
-  - GEMINI: Mueve de `[V]` a `[R]` y a `[✓]` tras validación
+  - CODEX (o GEMINI cuando implemente): Actualiza de `[ ]` a `[/]` y luego a `[V]`
+  - GEMINI CODE ASSIST: Mueve de `[V]` a `[R]` y a `[✓]` tras validación
   - FRANK: Da aprobación final `[X]`
 
 #### 2. Soft Gates (Puertas de Calidad)
@@ -173,9 +167,9 @@ Esta sección documenta el conjunto de mejoras implementadas para gestión de ta
 **Referencia:** `meta/sistema-handoff.md`
 
 - **Protocolo de comunicación entre agentes:**
-  - **Entrega de CODEX → SOFIA:** SPEC completo, criterios de aceptación
-  - **Entrega de SOFIA → GEMINI:** Código completado, tests, documentación
-  - **Entrega de GEMINI → FRANK:** Validación técnica, recomendaciones
+  - **Entrega de CODEX → asistente de implementacion:** SPEC completo, criterios de aceptación
+  - **Entrega de asistente de implementacion → GEMINI CODE ASSIST:** Código completado, tests, documentación
+  - **Entrega de GEMINI CODE ASSIST → FRANK:** Validación técnica, recomendaciones
 
 - **Template de entrega:** Formato estandarizado en `meta/sistema-handoff.md`
 - **Validación:** Checklist de completitud antes de pasar al siguiente agente
@@ -189,8 +183,8 @@ Esta sección documenta el conjunto de mejoras implementadas para gestión de ta
 
 - **Proceso:**
   1. CODEX identifica necesidad de ADR
-  2. SOFIA documenta decisión en `context/decisions/ADR-XXX-titulo.md`
-  3. GEMINI revisa y valida razonamiento técnico
+  2. El asistente de implementación documenta decisión en `context/decisions/ADR-XXX-titulo.md`
+  3. GEMINI CODE ASSIST revisa y valida razonamiento técnico
   4. Se referencia en checkpoints y PROYECTO.md
 
 ---
@@ -205,8 +199,8 @@ Esta sección documenta el conjunto de mejoras implementadas para gestión de ta
   - **Sin comentarios innecesarios:** No parafrasear código, no dejar dead code comentado.
   
 - **Responsabilidades por rol:**
-  - **SOFIA:** Sigue SPEC-CODIGO.md al escribir código, evita comentarios redundantes.
-  - **GEMINI:** Audita cumplimiento de SPEC-CODIGO.md antes de aprobar código.
+  - **CODEX / GEMINI (cuando implementa):** Siguen SPEC-CODIGO.md al escribir código, evitan comentarios redundantes.
+  - **GEMINI CODE ASSIST:** Audita cumplimiento de SPEC-CODIGO.md antes de aprobar código.
   - **CODEX:** Actualiza SPEC-CODIGO.md cuando surjan nuevas convenciones o decisiones arquitectónicas.
 
 - **Checklist antes de `[✓]`:**
@@ -228,7 +222,7 @@ Esta sección documenta el conjunto de mejoras implementadas para gestión de ta
 
 **Versión:** v2.0  
 **Autor:** Frank Saavedra (Director de Proyecto)  
-**IA Participantes:** CODEX, SOFIA, GEMINI
+**IA Participantes:** CODEX y Gemini Code Assist
 
 ### Registro de Cambios
 

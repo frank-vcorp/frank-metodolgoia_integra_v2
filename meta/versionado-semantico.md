@@ -2,7 +2,7 @@
 
 ## 🎯 Objetivo
 
-Establecer un sistema consistente de versionado para el proyecto Farianergy App que comunique claramente el tipo y magnitud de cambios en cada release.
+Establecer un sistema consistente de versionado para el proyecto que comunique claramente el tipo y magnitud de cambios en cada release.
 
 ---
 

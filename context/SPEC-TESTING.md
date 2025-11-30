@@ -1,7 +1,7 @@
 # SPEC-TESTING
 
 ## Objetivo
-Establecer una estrategia de testing integral para garantizar la calidad, estabilidad y mantenibilidad del código en Farianergy App.
+Establecer una estrategia de testing integral para garantizar la calidad, estabilidad y mantenibilidad del código en este proyecto.
 
 ## Contexto
 Actualmente el proyecto carece de tests automatizados. Para garantizar entregas de calidad y evitar regresiones, es necesario implementar:
@@ -120,4 +120,4 @@ Actualmente el proyecto carece de tests automatizados. Para garantizar entregas 
 **Creado por:** CODEX  
 **Fecha:** 2025-11-07  
 **Estado:** Pendiente  
-**Asignado a:** SOFIA (implementación) + GEMINI (revisión)
+**Asignado a:** IMPLEMENTACION (implementación) + GEMINI (revisión)

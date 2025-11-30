@@ -6,7 +6,7 @@
 
 **Autores:** Equipo Farianergy Dev
 
-**Stakeholders:** Todos los desarrolladores, CI/CD, agentes IA (SOFIA, CODEX, GEMINI)
+**Stakeholders:** Todos los desarrolladores, CI/CD, agentes IA (CODEX, IMPLEMENTACION, GEMINI)
 
 **Etiquetas:** `#tooling` `#monorepo` `#dependencies` `#performance`
 
@@ -347,7 +347,7 @@ Esta decisión debería revisarse si:
 
 | Fecha | Cambio | Autor |
 |-------|--------|-------|
-| 2025-11-01 | Creación inicial | SOFIA |
+| 2025-11-01 | Creación inicial | IMPLEMENTACION |
 | 2025-11-02 | Estado cambiado a "Aceptada" tras testing exitoso | CODEX |
 | 2025-11-08 | Agregado a metodología INTEGRA como ejemplo | GEMINI |
 
@@ -393,5 +393,5 @@ time pnpm install  # 0m 31s
 ---
 
 **Firma:** Equipo Farianergy Dev
-**Revisado por:** SOFIA, CODEX, GEMINI
+**Revisado por:** IMPLEMENTACION, CODEX, GEMINI
 **Última actualización:** 2025-11-08

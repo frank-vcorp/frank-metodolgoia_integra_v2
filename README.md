@@ -19,23 +19,17 @@ Integra Evolucionada es una metodologia de desarrollo colaborativo entre humanos
 
 ## Roles de IA
 
-### CODEX - Arquitecto de Soluciones
-- Gestiona el proyecto y estructura SPECs
-- Valida entregables y genera PROYECTO.md
-- Explica el porque de cada decision tecnica
-- Supervisa sincronizacion entre VS Code, Continue y GitHub
+### CODEX - Arquitecto de Soluciones e Implementador Principal
+- Gestiona el proyecto y estructura SPECs.
+- Valida entregables y genera PROYECTO.md.
+- Implementa la mayoría de las tareas (código, docs, tests).
+- Explica el porqué de cada decisión técnica.
 
-### SOFIA - Constructora Principal
-- Ejecuta, prueba, documenta y valida entregables tecnicos
-- Crea archivos y carpetas directamente en el workspace
-- Supervisa commits automaticos y verifica integridad del codigo
-- Puede solicitar mentoria a GEMINI
-
-### GEMINI - Ingeniero Mentor
-- Propone optimizaciones y audita decisiones tecnicas
-- Verifica compatibilidad de dependencias y calidad del codigo
-- Aplica estrictamente las convenciones de `meta/SPEC-CODIGO.md`
-- Actua como mentor solo cuando se solicita explicitamente
+### GEMINI CODE ASSIST - Revisor, Mentor y Segundo Implementador
+- Propone optimizaciones y audita decisiones tecnicas.
+- Verifica compatibilidad de dependencias y calidad del codigo.
+- Aplica estrictamente las convenciones de `meta/SPEC-CODIGO.md`.
+- Puede asumir tareas de CODEX (planificación e implementación) cuando se necesite una segunda opinión o se trabaje más pegado al ecosistema Google.
 
 ### FRANK - Director de Proyecto (humano)
 - Supervisa, valida y aprueba entregables
@@ -100,7 +94,7 @@ tu-proyecto/
 
 ### 4. Configurar las IAs
 
-#### Para ChatGPT (CODEX/GEMINI)
+#### Para ChatGPT (CODEX)
 Carga el archivo `arquitectura_distribuida_v_1.md` como contexto inicial y proporciona:
 ```
 Rol: CODEX (Arquitecto de Soluciones)
@@ -108,21 +102,8 @@ Objetivo: Gestionar el proyecto [NOMBRE] siguiendo Metodologia Integra Evolucion
 Contexto: [Breve descripcion del proyecto]
 ```
 
-#### Para Claude/Continue (SOFIA)
-En `.continue/config.json`, agrega:
-```json
-{
-  "systemMessage": "Actua como SOFIA, Constructora Principal del proyecto, siguiendo Metodologia Integra Evolucionada",
-  "contextFiles": [
-    "PROYECTO.md",
-    "arquitectura_distribuida_v_1.md",
-    "meta/SPEC-CODIGO.md"
-  ]
-}
-```
-
-#### Para Gemini Code Assist (GEMINI)
-Configura como mentor con acceso a:
+#### Para Gemini Code Assist (Revisor / Segundo Implementador)
+Configúralo con acceso a:
 - `meta/SPEC-CODIGO.md` (convenciones)
 - `context/SPEC-SEGURIDAD.md`
 - `context/SPEC-TESTING.md`
@@ -131,8 +112,8 @@ Configura como mentor con acceso a:
 
 1. **CODEX** crea el archivo `PROYECTO.md` con el backlog inicial
 2. **CODEX** genera SPECs para las tareas complejas (usa `meta/plantilla_SPEC.md`)
-3. **SOFIA** ejecuta las tareas y actualiza estados en `PROYECTO.md`
-4. **GEMINI** revisa codigo cuando se solicita
+3. **CODEX** ejecuta las tareas y actualiza estados en `PROYECTO.md`
+4. **Gemini Code Assist** revisa código y, si hace falta, también puede implementar o ajustar código siguiendo los mismos SPECs
 5. **FRANK** valida entregables y aprueba milestones
 
 ## Estructura de Archivos en Esta Plantilla
@@ -157,20 +138,18 @@ metodologia-integra/
 
 ## Herramientas Recomendadas por Rol
 
-- **SOFIA**: ChatGPT API / GPT-4
-- **CODEX**: GitHub Copilot / OpenAI Codex
-- **GEMINI**: Google Gemini Code Assist
+- **CODEX**: ChatGPT / GitHub Copilot / otros LLMs
+- **GEMINI CODE ASSIST**: Google Gemini Code Assist (revisión + implementación cuando se requiera)
 - **Continue.dev**: Para contexto compartido entre agentes
 
 ### Editores y AI Coding Assistants
-- **VS Code** con extension **Continue** (SOFIA)
+- **VS Code** con extension **Continue**
 - **Cursor** (alternativa con IA integrada)
 - **Gemini Code Assist** para Google Cloud Platform
 
 ### AI Chat Interfaces
-- **ChatGPT** (CODEX/GEMINI roles)
-- **Claude** (CODEX/SOFIA roles)
-- **Gemini Advanced** (GEMINI role, especialmente para ecosistema Google)
+- **ChatGPT** (rol CODEX/implementador principal)
+- **Gemini Advanced / Gemini Code Assist** (revisor y posible segundo implementador)
 
 ### Control de Versiones
 - **GitHub** (repositorios privados recomendados)
@@ -185,7 +164,7 @@ metodologia-integra/
 
 ```
 - [ ] Pendiente       # Tarea definida, no iniciada
-- [/] En Progreso     # SOFIA trabajando en la tarea
+- [/] En Progreso     # CODEX o GEMINI trabajando en la tarea
 - [✓] Hecho           # Tarea completada y validada
 - [X] Aprobado        # FRANK aprobo el entregable
 ```
@@ -219,7 +198,7 @@ metodologia-integra/
 
 ## Soporte y Comunidad
 
-Esta metodologia fue desarrollada por Frank Saavedra y el equipo de IAs: CODEX, SOFIA y GEMINI.
+Esta metodologia fue desarrollada por Frank Saavedra y el equipo de IAs: CODEX y Gemini Code Assist.
 
 Para reportar problemas o contribuir mejoras:
 1. Crea un issue en el repositorio de la plantilla
@@ -242,6 +221,7 @@ Para reportar problemas o contribuir mejoras:
 - `meta/SPEC-CODIGO.md` - Convenciones de código
 - `meta/criterios_calidad.md` - Criterios de calidad
 - `meta/plantilla_SPEC.md` - Template para SPECs
+ - `context/SPEC-UX-UI.md` - Lineamientos para diseño UX/UI con herramientas externas (Stitch, Figma, etc.), siempre eligiendo la herramienta más adecuada según el contexto
 
 ### Documentación de Decisiones
 - `context/decisions/README.md` - Sistema ADR
@@ -282,4 +262,4 @@ Para reportar problemas o contribuir mejoras:
 **Version de la Plantilla:** 2.0  
 **Fecha:** 2025-11-08  
 **Autor:** Frank Saavedra (Director de Proyecto)  
-**IAs Participantes:** CODEX, SOFIA, GEMINI
+**IAs Participantes:** CODEX y Gemini Code Assist

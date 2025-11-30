@@ -8,21 +8,31 @@
 
 ## Flujo de Estados
 
-```
-[ ] Pendiente
-  ↓
-[~] Planificado
-  ↓
-[/] En Progreso
-  ↓
-[V] En Validación
-  ↓
-[R] En Revisión
-  ↓
-[✓] Completado
-  ↓
-[X] Aprobado
-```
+```mermaid
+stateDiagram-v2
+    [*] --> PENDIENTE
+    PENDIENTE: [ ] Pendiente
+    PLANIFICADO: [~] Planificado
+    PROGRESO: [/] En Progreso
+    VALIDACION: [V] En Validación
+    REVISION: [R] En Revisión
+    COMPLETADO: [✓] Completado
+    APROBADO: [X] Aprobado
+    BLOQUEADO: [!] Bloqueado
+    CLARIFICACION: [?] Necesita Clarificación
+
+    PENDIENTE --> PLANIFICADO
+    PLANIFICADO --> PROGRESO
+    PROGRESO --> VALIDACION
+    VALIDACION --> REVISION
+    REVISION --> COMPLETADO
+    COMPLETADO --> APROBADO
+
+    PENDIENTE --> BLOQUEADO
+    PENDIENTE --> CLARIFICACION
+    PROGRESO --> BLOQUEADO
+    PROGRESO --> CLARIFICACION
+    PLANIFICADO --> CLARIFICACION
 
 ---
 
@@ -53,14 +63,14 @@
 - [x] Agente asignado
 
 **Acciones permitidas:**
-- SOFIA puede mover a `[/]` al iniciar implementación
+- El asistente de implementación puede mover a `[/]` al iniciar implementación
 - CODEX puede volver a `[ ]` si el SPEC es rechazado
 
 **Ejemplo:**
 ```markdown
 - [~] Implementación de notificaciones push
   **Meta:**
-  - Agente: SOFIA
+  - Agente: IMPLEMENTACION
   - Estimación: 6-8 horas
   - Dependencias: [✓] Firebase Cloud Messaging configurado
   - SPEC: context/SPEC-NOTIFICACIONES.md
@@ -70,13 +80,13 @@
 
 ### [/] En Progreso
 **Descripción:** Agente ejecutando activamente la tarea.  
-**Responsable:** SOFIA (principalmente)  
+**Responsable:** CODEX (o GEMINI cuando implemente)  
 **Requisitos para este estado:**
 - [x] Agente identificado trabajando
 - [x] Comenzó a modificar archivos o escribir código
 
 **Acciones permitidas:**
-- SOFIA mueve a `[V]` al completar implementación
+- El asistente de implementación mueve a `[V]` al completar implementación
 - Puede volver a `[~]` si encuentra bloqueador crítico
 - Puede marcar como `[!]` si se bloquea
 - Puede marcar como `[?]` si necesita clarificación
@@ -85,7 +95,7 @@
 ```markdown
 - [/] Implementación de notificaciones push
   **En progreso desde:** 2025-11-08 14:30
-  **Agente:** SOFIA (ChatGPT API)
+  **Agente:** CODEX (o GEMINI, si aplica)
   **Avance:** 60% (3/5 subtareas completadas)
 ```
 
@@ -93,7 +103,7 @@
 
 ### [V] En Validación
 **Descripción:** Código implementado, ejecutando tests y validaciones técnicas.  
-**Responsable:** SOFIA (ejecuta) + herramientas automatizadas  
+**Responsable:** Asistente de implementación (ejecuta) + herramientas automatizadas  
 **Requisitos para este estado:**
 - [x] Código compilable (TypeScript sin errores)
 - [x] ESLint corriendo
@@ -107,8 +117,8 @@
 - Type checking
 
 **Acciones permitidas:**
-- SOFIA mueve a `[R]` si todas las validaciones pasan
-- SOFIA vuelve a `[/]` si hay errores y corrige
+- El asistente de implementación mueve a `[R]` si todas las validaciones pasan
+- El asistente de implementación vuelve a `[/]` si hay errores y corrige
 
 **Ejemplo:**
 ```markdown
@@ -180,7 +190,7 @@
 ```markdown
 - [✓] Implementación de notificaciones push
   **Completado:** 2025-11-08 17:30
-  **Agente principal:** SOFIA
+  **Agente principal:** Asistente de implementación
   **Revisor:** GEMINI
   **Gates:** ✓ Compilación | ✓ Tests | ✓ Revisión | ✓ Docs
   **Checkpoint:** Checkpoints/CHK_2025-11-08_1730.md
@@ -274,8 +284,8 @@
 
 ### Flujos con Iteración
 ```
-[/] → [V] → [/]  (tests fallan, SOFIA corrige)
-[R] → [/]        (GEMINI rechaza, SOFIA corrige)
+[/] → [V] → [/]  (tests fallan, el asistente de implementación corrige)
+[R] → [/]        (GEMINI rechaza, el asistente de implementación corrige)
 [~] → [?]        (SPEC ambiguo, requiere clarificación)
 [/] → [!]        (bloqueador detectado)
 ```
@@ -299,12 +309,12 @@
 - Identifica y marca `[!]` bloqueadores
 - Marca `[?]` cuando requiere clarificación
 
-### SOFIA (Constructora)
-- Mueve de `[~]` a `[/]` (inicia trabajo)
-- Mueve de `[/]` a `[V]` (completa implementación)
-- Ejecuta validaciones en `[V]`
-- Mueve de `[V]` a `[R]` (validaciones pasan)
-- Corrige y vuelve a `[/]` si `[V]` o `[R]` fallan
+### CODEX / GEMINI (cuando implementan)
+- Mueven de `[~]` a `[/]` (inician trabajo)
+- Mueven de `[/]` a `[V]` (completan implementación)
+- Ejecutan validaciones en `[V]`
+- Mueven de `[V]` a `[R]` (validaciones pasan)
+- Corrigen y vuelven a `[/]` si `[V]` o `[R]` fallan
 
 ### GEMINI (Revisor)
 - Audita código en estado `[R]`
@@ -327,7 +337,7 @@
 
 - [X] Implementación de notificaciones push
   **Meta:**
-  - Agente: SOFIA
+  - Agente: CODEX (o GEMINI si implementó)
   - Estimación: 6 horas
   - Real: 7.5 horas
   - SPEC: context/SPEC-NOTIFICACIONES.md
@@ -335,7 +345,7 @@
   **Timeline:**
   - 2025-11-08 09:00 - [ ] Pendiente
   - 2025-11-08 10:00 - [~] CODEX generó SPEC
-  - 2025-11-08 11:00 - [/] SOFIA inició implementación
+  - 2025-11-08 11:00 - [/] Asistente de implementación inició trabajo
   - 2025-11-08 15:30 - [V] Tests ejecutándose
   - 2025-11-08 16:00 - [R] GEMINI revisando
   - 2025-11-08 17:00 - [✓] Aprobado por GEMINI
@@ -379,7 +389,7 @@
   **Meta:** (solo si estado >= [~])
   - Prioridad: 🔴 Alta | 🟡 Media | 🟢 Baja
   - Estimación: X horas
-  - Agente: SOFIA | CODEX | GEMINI
+  - Agente: Asistente de implementación | CODEX | GEMINI
   - Dependencias: [✓] Tarea1, [/] Tarea2
   - SPEC: ruta/al/spec.md
   
@@ -417,4 +427,4 @@
 
 **Versión:** 1.0  
 **Autor:** Frank Saavedra  
-**IA Colaboradora:** Verdent (Claude Sonnet 4)
+**IA Colaboradora:** Gemini Code Assist

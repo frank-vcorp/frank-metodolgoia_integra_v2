@@ -1,8 +1,12 @@
 # Resumen de Implementación - Metodología Integra v2.0
 
+> Este documento describe cómo se aplicó la metodología Integra v2.0 en un proyecto real previo (Farianergy App).  
+> Se incluye como **ejemplo histórico** y referencia, no como parte obligatoria de la plantilla.
+
 **Fecha:** 2025-11-08  
 **Proyecto:** Farianergy App  
-**IA Implementadora:** Verdent (Claude Sonnet 4)  
+**IA Implementadora (histórica):** Verdent (Claude Sonnet 4)  
+**Configuración actual recomendada:** CODEX + Gemini Code Assist  
 **Solicitado por:** Frank Saavedra
 
 ---
@@ -35,7 +39,7 @@ Implementar todas las sugerencias de mejora para la Metodología Integra Evoluci
   - `[?]` Necesita Clarificación
 
 - Flujo completo de transiciones
-- Responsabilidades por agente (CODEX, SOFIA, GEMINI)
+- Responsabilidades por agente (CODEX, IMPLEMENTACION, GEMINI)
 - Templates de uso en PROYECTO.md
 - Ejemplos completos con timeline
 
@@ -160,7 +164,7 @@ Implementar todas las sugerencias de mejora para la Metodología Integra Evoluci
 - Contexto automático de metodología
 - Reglas de código (SPEC-CODIGO.md)
 - Configuración por agente:
-  - SOFIA (ChatGPT API)
+  - IMPLEMENTACION (ChatGPT API u otro LLM)
   - CODEX (GitHub Copilot)
   - GEMINI (Gemini Code Assist)
   
@@ -217,9 +221,9 @@ Implementar todas las sugerencias de mejora para la Metodología Integra Evoluci
   - Próximos pasos sugeridos
   
 - 3 ejemplos completos:
-  - SOFIA → GEMINI (revisión de código)
+  - IMPLEMENTACION → GEMINI (revisión de código)
   - GEMINI → CODEX (validación arquitectónica)
-  - CODEX → SOFIA (implementación de diseño)
+  - CODEX → IMPLEMENTACION (implementación de diseño)
   
 - Mejores prácticas
 - Formato en PROYECTO.md
@@ -274,7 +278,7 @@ Implementar todas las sugerencias de mejora para la Metodología Integra Evoluci
   - Nunca commitear secretos
   
 - Herramientas por rol:
-  - SOFIA: ChatGPT API
+  - IMPLEMENTACION: ChatGPT API u otro LLM
   - CODEX: GitHub Copilot
   - GEMINI: Gemini Code Assist
   
@@ -312,7 +316,7 @@ Implementar todas las sugerencias de mejora para la Metodología Integra Evoluci
 
 | Agente | Mejoras | Impacto Principal |
 |--------|---------|-------------------|
-| **SOFIA** | 7/10 | Estados, Soft Gates, Handoff, Checkpoints |
+| **IMPLEMENTACION** | 7/10 | Estados, Soft Gates, Handoff, Checkpoints |
 | **GEMINI** | 6/10 | Soft Gates (Gate 3), Handoff, Código |
 | **CODEX** | 8/10 | ADR, Priorización, Estados, Versionado |
 | **Continue.dev** | 1/10 | Configuración compartida |
@@ -410,7 +414,7 @@ cp templates/gitignore-template.txt .gitignore
   **Meta:**
   - Prioridad: 🟡 Media
   - Estimación: S (2-4h)
-  - Agente: SOFIA
+  - Agente: IMPLEMENTACION
   - Dependencias: Ninguna
   
   **Estados esperados:**
@@ -438,7 +442,7 @@ node scripts/generate-dashboard.js
 - ✅ ADR para documentar decisiones
 - ✅ Visionado semántico formalizado
 
-### Para SOFIA (Constructora)
+### Para IMPLEMENTACION (Constructora)
 - ✅ Estados granulares (sabe exactamente qué hacer)
 - ✅ Soft Gates (criterios claros de completado)
 - ✅ Handoff estructurado a GEMINI
@@ -498,11 +502,12 @@ La **Metodología Integra Evolucionada v2.0** ahora cuenta con:
 5. ✅ Estándares formalizados (Versionado + Código)
 6. ✅ Onboarding estructurado (Guía completa)
 
-La metodología está lista para ser usada como plantilla de GitHub y aplicada en cualquier proyecto que utilice el flujo CODEX → SOFIA → GEMINI → FRANK.
+La metodología está lista para ser usada como plantilla de GitHub y aplicada en cualquier proyecto que utilice el flujo CODEX → IMPLEMENTACION → GEMINI → FRANK.
 
 ---
 
-**Implementado por:** Verdent (Claude Sonnet 4)  
+**Implementado originalmente por:** Verdent (Claude Sonnet 4)  
+**Configuración de uso actual:** CODEX + Gemini Code Assist  
 **Para:** Frank Saavedra  
 **Proyecto:** Farianergy App  
 **Fecha:** 2025-11-08  

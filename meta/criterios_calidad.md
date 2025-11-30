@@ -196,7 +196,7 @@ Antes de marcar una tarea como `[✓]` en PROYECTO.md:
    - [ ] Seguridad: inputs validados, auth verificada
    - [ ] Performance: queries optimizadas, bundle size OK
 
-3. **QA Manual (SOFIA o QA)**
+3. **QA Manual (asistente de implementación o QA)**
    - [ ] Happy path funcional
    - [ ] Error handling funcional
    - [ ] UI responsive
@@ -213,7 +213,7 @@ Antes de marcar una tarea como `[✓]` en PROYECTO.md:
 **Versión:** 1.0  
 **Fecha:** 2025-11-08  
 **Autor:** CODEX (Sistema Integra Evolucionada)  
-**Revisores:** SOFIA, GEMINI, FRANK
+**Revisores:** IMPLEMENTACION, GEMINI, FRANK
 
 ## Changelog
 
