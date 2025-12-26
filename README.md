@@ -1,4 +1,4 @@
-# Metodologia Integra Evolucionada v2.0 - Plantilla de Proyecto
+# Metodologia Integra Evolucionada v2.1.1 - Plantilla de Proyecto
 
 Esta plantilla contiene todos los artefactos necesarios para implementar la **Metodologia Integra Evolucionada** en tus proyectos de desarrollo asistido por IA.
 
