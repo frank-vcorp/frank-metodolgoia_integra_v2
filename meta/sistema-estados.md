@@ -42,7 +42,7 @@ stateDiagram-v2
 **Descripción:** Tarea identificada pero no iniciada.  
 **Responsable:** Ninguno asignado  
 **Acciones permitidas:**
-- CODEX puede mover a `[~]` al generar SPEC
+- INTEGRA puede mover a `[~]` al generar SPEC
 - Puede marcar como `[!]` si detecta bloqueador
 - Puede marcar como `[?]` si necesita clarificación
 
@@ -55,7 +55,7 @@ stateDiagram-v2
 
 ### [~] Planificado
 **Descripción:** SPEC generado, arquitectura definida, lista para ejecutar.  
-**Responsable:** CODEX  
+**Responsable:** INTEGRA  
 **Requisitos para este estado:**
 - [x] SPEC creado (context/SPEC-XXX.md o meta/SPEC-XXX.md)
 - [x] Dependencias identificadas
@@ -63,14 +63,14 @@ stateDiagram-v2
 - [x] Agente asignado
 
 **Acciones permitidas:**
-- El asistente de implementación puede mover a `[/]` al iniciar implementación
-- CODEX puede volver a `[ ]` si el SPEC es rechazado
+- SOFIA puede mover a `[/]` al iniciar implementación
+- INTEGRA puede volver a `[ ]` si el SPEC es rechazado
 
 **Ejemplo:**
 ```markdown
 - [~] Implementación de notificaciones push
   **Meta:**
-  - Agente: IMPLEMENTACION
+  - Agente: SOFIA
   - Estimación: 6-8 horas
   - Dependencias: [✓] Firebase Cloud Messaging configurado
   - SPEC: context/SPEC-NOTIFICACIONES.md
@@ -80,13 +80,13 @@ stateDiagram-v2
 
 ### [/] En Progreso
 **Descripción:** Agente ejecutando activamente la tarea.  
-**Responsable:** CODEX (o GEMINI cuando implemente)  
+**Responsable:** SOFIA (o GEMINI cuando implemente)  
 **Requisitos para este estado:**
 - [x] Agente identificado trabajando
 - [x] Comenzó a modificar archivos o escribir código
 
 **Acciones permitidas:**
-- El asistente de implementación mueve a `[V]` al completar implementación
+- SOFIA mueve a `[V]` al completar implementación
 - Puede volver a `[~]` si encuentra bloqueador crítico
 - Puede marcar como `[!]` si se bloquea
 - Puede marcar como `[?]` si necesita clarificación
@@ -95,7 +95,7 @@ stateDiagram-v2
 ```markdown
 - [/] Implementación de notificaciones push
   **En progreso desde:** 2025-11-08 14:30
-  **Agente:** CODEX (o GEMINI, si aplica)
+  **Agente:** SOFIA (o GEMINI, si aplica)
   **Avance:** 60% (3/5 subtareas completadas)
 ```
 
@@ -302,25 +302,38 @@ stateDiagram-v2
 
 ## Responsabilidades por Agente
 
-### CODEX (Arquitecto)
+### INTEGRA (Arquitecto)
 - Mueve de `[ ]` a `[~]` (planificación)
 - Valida `[✓]` antes de presentar a Frank
 - Mueve de `[✓]` a `[X]` tras aprobación de Frank
 - Identifica y marca `[!]` bloqueadores
 - Marca `[?]` cuando requiere clarificación
 
-### CODEX / GEMINI (cuando implementan)
-- Mueven de `[~]` a `[/]` (inician trabajo)
-- Mueven de `[/]` a `[V]` (completan implementación)
-- Ejecutan validaciones en `[V]`
-- Mueven de `[V]` a `[R]` (validaciones pasan)
-- Corrigen y vuelven a `[/]` si `[V]` o `[R]` fallan
+### SOFIA (Constructora)
+- Mueve de `[~]` a `[/]` (inicia trabajo)
+- Mueve de `[/]` a `[V]` (completa implementación)
+- Ejecuta validaciones en `[V]`
+- Mueve de `[V]` a `[R]` (validaciones pasan)
+- Corrige y vuelve a `[/]` si `[V]` o `[R]` fallan
 
-### GEMINI (Revisor)
+### GEMINI (Revisor de Calidad e Infraestructura)
 - Audita código en estado `[R]`
 - Mueve de `[R]` a `[✓]` (aprueba revisión)
 - Mueve de `[R]` a `[/]` (rechaza con comentarios)
 - Verifica cumplimiento de Soft Gates
+- Puede implementar cuando se requiera segunda opinión
+
+### DEBY (Debugger Forense)
+- Interviene cuando hay bugs complejos
+- Genera dictámenes técnicos con ID único
+- Documenta fixes en `context/interconsultas/`
+- Inyecta marca de agua en código corregido
+
+### CRONISTA (Administrador)
+- Mantiene PROYECTO.md actualizado
+- Documenta cambios de estado
+- Detecta incoherencias
+- Referencia checkpoints y documentos
 
 ### FRANK (Director)
 - Mueve de `[✓]` a `[X]` (aprobación final)

@@ -13,7 +13,7 @@ Integra se organiza en cuatro capas principales:
 
 1. **Principios y visión**  
    - `arquitectura_distribuida_v_1.md`  
-   - Define el ecosistema (Google Workspace, GCP, IA), los roles (CODEX, Gemini Code Assist, FRANK) y el modelo de colaboración humano‑IA.
+   - Define el ecosistema (Google Workspace, GCP, IA), los roles (INTEGRA, SOFIA, GEMINI, DEBY, CRONISTA, FRANK) y el modelo de colaboración humano‑IA.
 
 2. **Motor de proceso (metodología)**  
    - Carpeta `meta/`  
@@ -90,13 +90,14 @@ Para el detalle completo ver `README.md`, pero a nivel de sistema:
   - Define dirección del proyecto y criterios de aceptación.  
   - Tiene la última palabra en `[X] Aprobado`.
 
-- **CODEX (Arquitecto de Soluciones e Implementador Principal)**  
-  - Diseña SPECs, estructura el trabajo y mantiene el orden en `PROYECTO.md`.  
-  - Implementa la mayoría de las tareas (código, tests, documentación) apoyándose en `meta/` y `context/`.
+La Metodología INTEGRA v2.0 utiliza **5 agentes especializados**. Ver documentación completa en `meta/AGENTES.md`.
 
-- **Gemini Code Assist (Revisor / Segundo Implementador)**  
-  - Revisa calidad, detecta mejoras y valida cumplimiento de estándares antes de `[✓]`.  
-  - Puede asumir tareas de CODEX (planificación e implementación) cuando se busque una segunda opinión o se trabaje más pegado al ecosistema Google.
+-   **INTEGRA** inicia y organiza tareas en PROYECTO.md, crea SPECs y define arquitectura.
+-   **SOFIA** ejecuta construcción de código, tests y documentación según SPECs.
+-   **GEMINI** revisa calidad, infraestructura y seguridad. Puede devolver a SOFIA si no cumple Soft Gates.
+-   **DEBY** interviene cuando hay bugs complejos, genera dictámenes técnicos con trazabilidad total.
+-   **CRONISTA** mantiene PROYECTO.md actualizado con estados y notas claras.
+-   **FRANK** valida entregables finales y otorga aprobación.
 
 ---
 
@@ -104,16 +105,15 @@ Para el detalle completo ver `README.md`, pero a nivel de sistema:
 
 Flujo normal de una tarea en `PROYECTO.md`:
 
-1. **[ ] Pendiente** · La tarea existe, pero sin diseño detallado.  
-2. **[~] Planificado** · CODEX genera SPEC y define alcance.  
-3. **[/] En Progreso** · CODEX o Gemini Code Assist implementan según SPEC.  
-4. **[V] En Validación** · Se ejecutan compilación, tests y checks técnicos.  
-5. **[R] En Revisión** · Gemini Code Assist revisa código y documentación.  
-6. **[✓] Completado** · Todos los Soft Gates pasados, checkpoint generado.  
-7. **[X] Aprobado** · Frank valida y aprueba oficialmente.
+1.  **[ ] Pendiente** · La tarea existe, pero sin diseño detallado.
+2.  **[~] Planificado** · INTEGRA genera SPEC y define alcance.
+3.  **[/] En Progreso** · SOFIA implementa según SPEC.
+4.  **[V] En Validación** · Se ejecutan compilación, tests y checks técnicos.
+5.  **[R] En Revisión** · GEMINI revisa código y documentación.
+6.  **[✓] Completado** · Todos los Soft Gates pasados, checkpoint generado.
+7.  **[X] Aprobado** · Frank valida y aprueba oficialmente.
 
 Estados especiales:
-- **[!] Bloqueado** · Hay un impedimento externo.  
 - **[?] Necesita Clarificación** · Faltan decisiones o requisitos claros.
 
 Las reglas completas están en `meta/sistema-estados.md` y `meta/soft-gates.md`.
