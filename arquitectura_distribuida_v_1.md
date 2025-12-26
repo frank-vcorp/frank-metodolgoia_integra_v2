@@ -1,4 +1,4 @@
-## 📘 ARQUITECTURA DISTRIBUIDA – SISTEMA INTEGRA EVOLUCIONADA v2.0
+## 📘 ARQUITECTURA DISTRIBUIDA – SISTEMA INTEGRA EVOLUCIONADA v2.1
 
 ### I. Principios Operativos Generales
 - **Metodología:** Integra Evolucionada.
@@ -34,22 +34,47 @@
 
 ### III. Roles y Jerarquía de IA
 
-#### 🧠 CODEX – Arquitecto de Soluciones y Estratega de Producto
-- Gestiona el proyecto, estructura SPECs, valida entregables y genera PROYECTO.md.
-- Actúa como ejecutor si GEMINI no está disponible (modo Gemini interno).
-- Explica el porqué de cada decisión técnica o estratégica.
-- Supervisa la sincronización entre VS Code, Continue y GitHub.
-
-#### 🧩 GEMINI CODE ASSIST – Revisor, Mentor y Segundo Implementador
-- Propone optimizaciones, audita decisiones técnicas y explica conceptos cuando se le solicita.
-- Verifica compatibilidad de dependencias, calidad del código y mantiene alineación con los estándares de la Metodología Integra.
-- **Aplica estrictamente las convenciones de `meta/SPEC-CODIGO.md` en cada revisión.**
-- Puede asumir tareas de CODEX (planificación e implementación) cuando sea necesario.
+La Metodología INTEGRA v2.0 utiliza un ecosistema de **5 agentes especializados** que trabajan en conjunto. Ver documentación completa en `meta/AGENTES.md`.
 
 #### 👑 FRANK – Director de Proyecto (humano)
 - Supervisa, valida y aprueba los entregables.
 - No modifica estados en PROYECTO.md directamente; las IA gestionan el flujo.
 - Su aprobación convierte una tarea en estado `[X] Aprobado`.
+
+#### 🧠 INTEGRA – Arquitecto de Soluciones (Gemini 3 Pro)
+- Gestiona el proyecto, estructura SPECs, valida entregables y genera PROYECTO.md.
+- Define **qué** se construye, **en qué orden** y **con qué arquitectura**.
+- Explica el porqué de cada decisión técnica o estratégica.
+- Crea ADRs para decisiones arquitectónicas importantes.
+- Supervisa la sincronización entre VS Code, Continue y GitHub.
+
+#### ⚙️ SOFIA – Constructora Principal (Claude Haiku 4.5)
+- Convierte tareas de `PROYECTO.md` y SPECs en **código funcional**.
+- Implementa tests automatizados y documentación mínima necesaria.
+- Actualiza estados de tareas: `[ ]` → `[~]` → `[/]` → `[V]` → `[✓]`.
+- Crea checkpoints usando `meta/plantilla-checkpoint-enriquecido.md`.
+- Tiene mayor acceso a herramientas del editor (lectura/escritura, ejecución).
+
+#### 🔍 GEMINI – Infraestructura y Calidad (Gemini 3 Pro)
+- **Infraestructura:** Google Cloud, Vercel, Render, Hostinger.
+- **Auditoría de Calidad:** Revisa código contra Soft Gates y SPEC-CODIGO.md.
+- Verifica seguridad, rendimiento y mantenibilidad.
+- Valida decisiones arquitectónicas y propone mejoras.
+- Puede rechazar código y devolverlo a SOFIA con feedback específico.
+
+#### 🛡️ DEBY – Debugger Forense (Claude Opus 4.5)
+- **Debugging Quirúrgico:** Rastrea causa raíz hasta el origen lógico/arquitectónico.
+- **Trazabilidad Absoluta:** Genera ID único (`FIX-YYYYMMDD-NN`) para cada intervención.
+- Crea dictámenes técnicos en `context/interconsultas/DICTAMEN_[ID].md`.
+- Inyecta "marca de agua" en código con referencia al dictamen.
+- No parcha síntomas, resuelve problemas de fondo.
+
+#### 📝 CRONISTA – Administrador (GPT-5.1)
+- Mantiene `PROYECTO.md` ordenado y actualizado.
+- Actualiza estados de tareas y escribe notas explícitas.
+- Detecta incoherencias (tareas `[✓]` sin notas, bloqueadas sin motivo).
+- Referencia checkpoints y documentos relevantes.
+- Solo escribe en `PROYECTO.md` (salvo reportes solicitados).
 
 ---
 
@@ -81,10 +106,26 @@
 ---
 
 ### V. Flujo de Roles
-1. **CODEX** inicia y organiza tareas en PROYECTO.md.
-2. **CODEX** ejecuta construcción, documentación y validación en la mayoría de los casos.
-3. **GEMINI CODE ASSIST** revisa el código técnico y, cuando se requiera, también puede implementar o ajustar código siguiendo los SPECs.
-4. **FRANK** valida entregables finales y otorga aprobación.
+
+```mermaid
+graph LR
+    A[FRANK Define Objetivos] --> B[INTEGRA Diseña Arquitectura]
+    B --> C[SOFIA Implementa Código]
+    C --> D[GEMINI Revisa Calidad]
+    D --> E{¿Aprobado?}
+    E -->|SÍ| F[CRONISTA Actualiza PROYECTO.md]
+    E -->|NO| C
+    C -.->|Si hay errores| G[DEBY Debugging]
+    G --> C
+    F --> H[FRANK Aprueba Final]
+```
+
+1. **INTEGRA** inicia y organiza tareas en PROYECTO.md, crea SPECs y define arquitectura.
+2. **SOFIA** ejecuta construcción de código, tests y documentación según SPECs.
+3. **GEMINI** revisa calidad, infraestructura y seguridad. Puede devolver a SOFIA si no cumple Soft Gates.
+4. **DEBY** interviene cuando hay bugs complejos, genera dictámenes técnicos con trazabilidad total.
+5. **CRONISTA** mantiene PROYECTO.md actualizado con estados y notas claras.
+6. **FRANK** valida entregables finales y otorga aprobación `[X]`.
 
 ---
 
@@ -220,11 +261,25 @@ Esta sección documenta el conjunto de mejoras implementadas para gestión de ta
 
 ---
 
-**Versión:** v2.0  
+**Versión:** v2.1  
 **Autor:** Frank Saavedra (Director de Proyecto)  
-**IA Participantes:** CODEX y Gemini Code Assist
+**IA Participantes:** INTEGRA, SOFIA, GEMINI, DEBY, CRONISTA
 
 ### Registro de Cambios
+
+#### v2.1 (2025-12-26) - ACTUALIZACIÓN DE AGENTES
+- ✨ **Sistema de 5 Agentes Especializados:**
+  - INTEGRA (Gemini 3 Pro) - Arquitecto de Soluciones
+  - SOFIA (Claude Haiku 4.5) - Constructora Principal
+  - GEMINI (Gemini 3 Pro) - Infraestructura y Calidad
+  - DEBY (Claude Opus 4.5) - Debugger Forense con Trazabilidad
+  - CRONISTA (GPT-5.1) - Administrador de PROYECTO.md
+- 📝 Nuevo documento: `meta/AGENTES.md` con documentación completa
+- 🔄 Actualizado `arquitectura_distribuida_v_1.md` con nuevos roles y flujo
+- 📚 Actualizado `README.md` con configuración de los 5 agentes
+- 🛡️ Sistema de dictámenes técnicos de DEBY (`context/interconsultas/`)
+- 📊 Diagramas mermaid de flujo de trabajo entre agentes
+- 🎯 Matriz de responsabilidades por agente
 
 #### v2.0 (2025-11-08) - MAJOR UPDATE
 - ✨ Sistema de Estados Granular (8 estados)

@@ -19,17 +19,37 @@ Integra Evolucionada es una metodologia de desarrollo colaborativo entre humanos
 
 ## Roles de IA
 
-### CODEX - Arquitecto de Soluciones e Implementador Principal
+La Metodología INTEGRA v2.0 utiliza **5 agentes especializados**. Ver documentación completa en `meta/AGENTES.md`.
+
+### INTEGRA - Arquitecto de Soluciones (Gemini 3 Pro)
 - Gestiona el proyecto y estructura SPECs.
-- Valida entregables y genera PROYECTO.md.
-- Implementa la mayoría de las tareas (código, docs, tests).
+- Define **qué** se construye, **en qué orden** y **con qué arquitectura**.
+- Crea ADRs para decisiones arquitectónicas importantes.
 - Explica el porqué de cada decisión técnica.
 
-### GEMINI CODE ASSIST - Revisor, Mentor y Segundo Implementador
-- Propone optimizaciones y audita decisiones tecnicas.
-- Verifica compatibilidad de dependencias y calidad del codigo.
-- Aplica estrictamente las convenciones de `meta/SPEC-CODIGO.md`.
-- Puede asumir tareas de CODEX (planificación e implementación) cuando se necesite una segunda opinión o se trabaje más pegado al ecosistema Google.
+### SOFIA - Constructora Principal (Claude Haiku 4.5)
+- Implementa código funcional, tests y documentación.
+- Actualiza estados de tareas en PROYECTO.md.
+- Crea checkpoints al completar bloques significativos.
+- Tiene mayor acceso a herramientas del editor.
+
+### GEMINI - Infraestructura y Calidad (Gemini 3 Pro)
+- Diseña y revisa infraestructura (GCP, Vercel, Render, Hostinger).
+- Audita calidad del código contra Soft Gates.
+- Verifica seguridad, rendimiento y mantenibilidad.
+- Puede rechazar código y devolverlo a SOFIA con feedback.
+
+### DEBY - Debugger Forense (Claude Opus 4.5)
+- Debugging quirúrgico con trazabilidad absoluta.
+- Genera dictámenes técnicos con ID único (`FIX-YYYYMMDD-NN`).
+- Inyecta "marca de agua" en código para trazabilidad.
+- No parcha síntomas, resuelve problemas de fondo.
+
+### CRONISTA - Administrador (GPT-5.1)
+- Mantiene PROYECTO.md ordenado y actualizado.
+- Actualiza estados y escribe notas explícitas.
+- Detecta incoherencias en el proyecto.
+- Referencia checkpoints y documentos relevantes.
 
 ### FRANK - Director de Proyecto (humano)
 - Supervisa, valida y aprueba entregables
@@ -94,27 +114,53 @@ tu-proyecto/
 
 ### 4. Configurar las IAs
 
-#### Para ChatGPT (CODEX)
-Carga el archivo `arquitectura_distribuida_v_1.md` como contexto inicial y proporciona:
+Carga los prompts de cada agente desde `meta/AGENTES.md`:
+
+#### Para INTEGRA (Gemini 3 Pro)
 ```
-Rol: CODEX (Arquitecto de Soluciones)
+Rol: INTEGRA (Arquitecto de Soluciones)
 Objetivo: Gestionar el proyecto [NOMBRE] siguiendo Metodologia Integra Evolucionada
 Contexto: [Breve descripcion del proyecto]
+Prompt: Ver meta/AGENTES.md sección INTEGRA
 ```
 
-#### Para Gemini Code Assist (Revisor / Segundo Implementador)
+#### Para SOFIA (Claude Haiku 4.5)
+```
+Rol: SOFIA (Constructora Principal)
+Objetivo: Implementar código según SPECs de INTEGRA
+Prompt: Ver meta/AGENTES.md sección SOFIA
+```
+
+#### Para GEMINI (Gemini 3 Pro)
 Configúralo con acceso a:
 - `meta/SPEC-CODIGO.md` (convenciones)
 - `context/SPEC-SEGURIDAD.md`
 - `context/SPEC-TESTING.md`
+- Prompt: Ver `meta/AGENTES.md` sección GEMINI
+
+#### Para DEBY (Claude Opus 4.5)
+```
+Rol: DEBY (Debugger Forense)
+Objetivo: Resolver bugs con trazabilidad total
+Prompt: Ver meta/AGENTES.md sección DEBY
+```
+
+#### Para CRONISTA (GPT-5.1)
+```
+Rol: CRONISTA (Administrador)
+Objetivo: Mantener PROYECTO.md actualizado
+Prompt: Ver meta/AGENTES.md sección CRONISTA
+```
 
 ### 5. Iniciar el Workflow
 
-1. **CODEX** crea el archivo `PROYECTO.md` con el backlog inicial
-2. **CODEX** genera SPECs para las tareas complejas (usa `meta/plantilla_SPEC.md`)
-3. **CODEX** ejecuta las tareas y actualiza estados en `PROYECTO.md`
-4. **Gemini Code Assist** revisa código y, si hace falta, también puede implementar o ajustar código siguiendo los mismos SPECs
-5. **FRANK** valida entregables y aprueba milestones
+1. **INTEGRA** crea el archivo `PROYECTO.md` con el backlog inicial
+2. **INTEGRA** genera SPECs para las tareas complejas (usa `meta/plantilla_SPEC.md`)
+3. **SOFIA** ejecuta las tareas y actualiza estados en `PROYECTO.md`
+4. **GEMINI** revisa código y puede rechazarlo si no cumple Soft Gates
+5. **DEBY** interviene cuando hay bugs complejos, generando dictámenes técnicos
+6. **CRONISTA** mantiene PROYECTO.md actualizado con notas claras
+7. **FRANK** valida entregables y aprueba milestones
 
 ## Estructura de Archivos en Esta Plantilla
 
@@ -138,8 +184,11 @@ metodologia-integra/
 
 ## Herramientas Recomendadas por Rol
 
-- **CODEX**: ChatGPT / GitHub Copilot / otros LLMs
-- **GEMINI CODE ASSIST**: Google Gemini Code Assist (revisión + implementación cuando se requiera)
+- **INTEGRA**: Gemini 3 Pro (Preview) - Arquitectura y diseño
+- **SOFIA**: Claude Haiku 4.5 - Implementación de código
+- **GEMINI**: Gemini 3 Pro (Preview) - Infraestructura y calidad
+- **DEBY**: Claude Opus 4.5 - Debugging forense
+- **CRONISTA**: GPT-5.1 (Preview) - Administración de PROYECTO.md
 - **Continue.dev**: Para contexto compartido entre agentes
 
 ### Editores y AI Coding Assistants
@@ -148,8 +197,10 @@ metodologia-integra/
 - **Gemini Code Assist** para Google Cloud Platform
 
 ### AI Chat Interfaces
-- **ChatGPT** (rol CODEX/implementador principal)
-- **Gemini Advanced / Gemini Code Assist** (revisor y posible segundo implementador)
+- **Gemini 3 Pro** (INTEGRA - arquitecto, GEMINI - infraestructura/QA)
+- **Claude Haiku 4.5** (SOFIA - constructora principal)
+- **Claude Opus 4.5** (DEBY - debugger forense)
+- **GPT-5.1** (CRONISTA - administrador)
 
 ### Control de Versiones
 - **GitHub** (repositorios privados recomendados)
@@ -238,6 +289,14 @@ Para reportar problemas o contribuir mejoras:
 
 ## Changelog de la Metodologia
 
+### v2.1 (2025-12-26)
+- Sistema de 5 agentes especializados (INTEGRA, SOFIA, GEMINI, DEBY, CRONISTA)
+- Nuevo documento `meta/AGENTES.md` con documentación completa de agentes
+- Sistema de dictámenes técnicos de DEBY para trazabilidad de fixes
+- Diagramas mermaid de flujo de trabajo entre agentes
+- Matriz de responsabilidades por agente
+- Actualización completa de arquitectura distribuida y README
+
 ### v2.0 (2025-11-08)
 - Sistema de gestión avanzada: 8 estados granulares, soft gates, priorización inteligente
 - Protocolo de handoff estructurado entre agentes
@@ -259,7 +318,7 @@ Para reportar problemas o contribuir mejoras:
 
 ---
 
-**Version de la Plantilla:** 2.0  
-**Fecha:** 2025-11-08  
+**Version de la Plantilla:** 2.1  
+**Fecha:** 2025-12-26  
 **Autor:** Frank Saavedra (Director de Proyecto)  
-**IAs Participantes:** CODEX y Gemini Code Assist
+**IAs Participantes:** INTEGRA, SOFIA, GEMINI, DEBY, CRONISTA
