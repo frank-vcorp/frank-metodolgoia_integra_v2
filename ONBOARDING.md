@@ -5,8 +5,11 @@
 Esta guía te ayuda a empezar a trabajar con la **Metodología INTEGRA Evolucionada v2** cuando la usas como plantilla en un proyecto nuevo.
 
 Está pensada para:
-- CODEX (arquitecto/implementador),
-- Gemini Code Assist (revisor / segundo implementador),
+- INTEGRA (arquitecto),
+- SOFIA (constructora),
+- GEMINI (infraestructura/QA),
+- DEBY (debugger forense),
+- CRONISTA (administrador),
 - y Frank (director humano),
 pero también sirve para cualquier otro desarrollador o IA que se sume al equipo.
 
@@ -28,7 +31,7 @@ El objetivo: que en menos de 1 hora tengas claro **qué documentos leer, cómo m
    - Diseño detallado del sistema Integra: ecosistema Google, agentes y principios.
 
 **Objetivo al terminar esta fase:**  
-Saber “dónde vive cada cosa” y cómo se relacionan CODEX, Gemini y Frank.
+Saber “dónde vive cada cosa” y cómo se relacionan INTEGRA, SOFIA, GEMINI, DEBY, CRONISTA y Frank.
 
 ---
 
@@ -123,21 +126,38 @@ Cómo usar esta plantilla como Frank:
 
 ---
 
-### CODEX (Arquitecto e implementador principal)
+### INTEGRA (Arquitecto e implementador principal)
 
 Responsabilidades principales:
 - Diseñar y mantener `PROYECTO.md` actualizado.
 - Crear y refinar SPECs (`meta/plantilla_SPEC.md` → `context/SPEC-*.md`).
-- Implementar cambios en el código del proyecto siguiendo `SPEC-CODIGO.md`.
-- Coordinar con Gemini Code Assist en revisión y calidad.
+- Coordinar con SOFIA (implementación) y GEMINI (revisión).
 
-Checklist inicial para CODEX:
+Checklist inicial para INTEGRA:
 - Instanciar `templates/PROYECTO-template.md` como `PROYECTO.md` en la raíz del proyecto.
 - Definir las primeras tareas en `PROYECTO.md` con sus estados y metadatos.
 - Asegurarse de que `context/` contiene al menos:
   - Un SPEC de seguridad adaptado.
   - Un SPEC de testing adaptado.
 - Acordar con Frank cómo se usarán los estados `[✓]` y `[X]` en ese proyecto.
+
+---
+
+### SOFIA (Constructora Principal)
+
+Responsabilidades principales:
+- Implementar código siguiendo `SPEC-CODIGO.md`.
+- Crear checkpoints al completar bloques significativos.
+- Actualizar estados en `PROYECTO.md`.
+
+Checklist para SOFIA:
+- Cargar como contexto:
+  - `meta/SPEC-CODIGO.md`
+  - `meta/soft-gates.md`
+  - `PROYECTO.md`
+- Aplicar el flujo de estados:
+  - Implementar tareas en `[/]`.
+  - Pasar a `[V]` cuando esté listo para validación.
 
 ---
 
@@ -209,12 +229,12 @@ Si usas VS Code + Continue:
 
 ### Paso 4 · Primer ciclo de trabajo
 
-1. Frank y CODEX definen el primer bloque de trabajo en `PROYECTO.md`.
-2. CODEX toma una tarea en `[ ]`, la pasa a `[~]` y genera el SPEC correspondiente.
-3. CODEX (o Gemini) pasa la tarea a `[/]` e implementa según el SPEC.
-4. CODEX ejecuta validaciones y la mueve a `[V]`.
-5. Gemini revisa (`[R]`), aplica Soft Gates y decide si pasa a `[✓]` o vuelve a `[/]`.
-6. Frank, informado por CODEX, decide cuándo marcar `[X]` para entregables clave.
+1. Frank e INTEGRA definen el primer bloque de trabajo en `PROYECTO.md`.
+2. INTEGRA toma una tarea en `[ ]`, la pasa a `[~]` y genera el SPEC correspondiente.
+3. SOFIA pasa la tarea a `[/]` e implementa según el SPEC.
+4. SOFIA ejecuta validaciones y la mueve a `[V]`.
+5. GEMINI revisa (`[R]`), aplica Soft Gates y decide si pasa a `[✓]` o vuelve a `[/]`.
+6. Frank, informado por INTEGRA, decide cuándo marcar `[X]` para entregables clave.
 
 ---
 
@@ -234,11 +254,15 @@ Si usas VS Code + Continue:
   - Entiende el flujo de estados y Soft Gates a alto nivel.
   - Sabe leer `PROYECTO.md` y exigir trazabilidad y checkpoints.
 
-- **CODEX**
+- **INTEGRA**
   - Sabe dónde vivirán SPECs, ADRs, checkpoints y PROYECTO.md.
   - Puede arrancar un proyecto nuevo copiando esta plantilla y adaptando `context/`.
 
-- **Gemini Code Assist**
+- **SOFIA**
+  - Conoce `meta/SPEC-CODIGO.md`, `meta/soft-gates.md` y `meta/sistema-estados.md`.
+  - Puede implementar tareas en `[/]` y crear checkpoints.
+
+- **GEMINI**
   - Conoce `meta/SPEC-CODIGO.md`, `meta/soft-gates.md` y `meta/sistema-estados.md`.
   - Puede revisar tareas en `[R]` y decidir si pasan a `[✓]` o se reabren.
 

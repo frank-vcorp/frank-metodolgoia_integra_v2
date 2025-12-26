@@ -212,8 +212,8 @@ Antes de marcar una tarea como `[✓]` en PROYECTO.md:
 
 **Versión:** 1.0  
 **Fecha:** 2025-11-08  
-**Autor:** CODEX (Sistema Integra Evolucionada)  
-**Revisores:** IMPLEMENTACION, GEMINI, FRANK
+**Autor:** INTEGRA (Sistema Integra Evolucionada)  
+**Revisores:** SOFIA, GEMINI, FRANK
 
 ## Changelog
 

@@ -63,7 +63,7 @@ pnpm lint --filter @farianergy/core
 - 💡 Info messages permitidos
 
 ### Responsable
-CODEX (o GEMINI cuando implementa) ejecuta y verifica Gate 1 antes de pasar a `[V]`.
+SOFIA (o GEMINI cuando implementa) ejecuta y verifica Gate 1 antes de pasar a `[V]`.
 
 ### Ejemplo de Fallo
 ```markdown
@@ -76,7 +76,7 @@ CODEX (o GEMINI cuando implementa) ejecuta y verifica Gate 1 antes de pasar a `[
   - ESLint: 1 error, 3 warnings
     - error: 'paymentId' is defined but never used
   
-  **Acción:** el asistente de implementación corrige errores y re-ejecuta Gate 1
+  **Acción:** SOFIA corrige errores y re-ejecuta Gate 1
 ```
 
 ### Ejemplo de Éxito
@@ -124,7 +124,7 @@ pnpm test:integration
 - ⏭️ Si no existen, documentar como deuda técnica
 
 ### Responsable
-El **asistente de implementación** ejecuta Gate 2 durante estado `[V]`.
+El **SOFIA** ejecuta Gate 2 durante estado `[V]`.
 
 ### Excepciones Permitidas
 
@@ -155,7 +155,7 @@ El **asistente de implementación** ejecuta Gate 2 durante estado `[V]`.
   - Coverage: 65% (objetivo: 80%)
     - Missing: Error handling en processPayment()
   
-  **Acción:** el asistente de implementación vuelve a [/] para corregir tests
+  **Acción:** SOFIA vuelve a [/] para corregir tests
 ```
 
 ### Ejemplo de Éxito
@@ -376,7 +376,7 @@ export function calculateTax(amount: number, taxRate: number): number {
 ```
 
 ### Responsable
-**CODEX** verifica Gate 4 antes de marcar `[✓]`.
+**INTEGRA** verifica Gate 4 antes de marcar `[✓]`.
 
 ### Ejemplo de Fallo
 ```markdown
@@ -391,7 +391,7 @@ export function calculateTax(amount: number, taxRate: number): number {
   - ❌ dossier_tecnico.md sin decisión de usar Stripe
   - ❌ Función calculateTax() sin JSDoc
   
-  **Acción:** CODEX solicita al asistente de implementación completar documentación
+  **Acción:** INTEGRA solicita a SOFIA completar documentación
   **Tiempo estimado:** 30 min
 ```
 
@@ -417,7 +417,7 @@ export function calculateTax(amount: number, taxRate: number): number {
 | ❌... | `[/]` | Asistente de implementación corrige |
 | ✅❌.. | `[/]` | Asistente de implementación corrige tests |
 | ✅✅❌. | `[/]` | Asistente de implementación refactoriza según GEMINI |
-| ✅✅✅❌ | `[/]` | Asistente de implementación/CODEX completan docs |
+| ✅✅✅❌ | `[/]` | SOFIA/INTEGRA completan docs |
 | ⏭️⏭️⏭️⏭️ | `[!]` | Bloqueador crítico, escalar |
 
 ---
@@ -444,7 +444,7 @@ export function calculateTax(amount: number, taxRate: number): number {
 ```markdown
 **Gates:** N/A N/A N/A ✅
 **Razón:** Solo cambios en archivos .md
-**Validación:** CODEX revisa redacción y formato
+**Validación:** INTEGRA revisa redacción y formato
 ```
 
 ---

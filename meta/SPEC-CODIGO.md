@@ -71,7 +71,7 @@
   ```
 - ✅ TODOs con contexto y asignación
   ```typescript
-  // TODO(IMPLEMENTACION): Migrar a Firestore batch writes cuando tengamos >500 docs
+  // TODO(SOFIA): Migrar a Firestore batch writes cuando tengamos >500 docs
   ```
 
 ## IV. Estructura de Archivos
@@ -304,8 +304,8 @@ Refs: SPEC-SEGURIDAD §3.2
 
 **Versión:** 1.0  
 **Fecha:** 2025-11-08  
-**Autor:** CODEX (Sistema Integra Evolucionada)  
-**Revisores:** IMPLEMENTACION, GEMINI
+**Autor:** INTEGRA (Sistema Integra Evolucionada)  
+**Revisores:** SOFIA, GEMINI
 
 ## Changelog
 

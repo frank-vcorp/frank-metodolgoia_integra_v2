@@ -117,7 +117,7 @@ Actualmente el proyecto carece de tests automatizados. Para garantizar entregas 
 
 ---
 
-**Creado por:** CODEX  
+**Creado por:** INTEGRA  
 **Fecha:** 2025-11-07  
 **Estado:** Pendiente  
-**Asignado a:** IMPLEMENTACION (implementación) + GEMINI (revisión)
+**Asignado a:** SOFIA (implementación) + GEMINI (revisión)

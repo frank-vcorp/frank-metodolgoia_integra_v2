@@ -78,4 +78,4 @@
 **Creado por:** [Nombre]  
 **Fecha:** [YYYY-MM-DD]  
 **Estado:** [Pendiente/En Progreso/Completado]  
-**Asignado a:** [IMPLEMENTACION/CODEX/GEMINI/FRANK]
+**Asignado a:** [SOFIA/INTEGRA/GEMINI/DEBY/FRANK]

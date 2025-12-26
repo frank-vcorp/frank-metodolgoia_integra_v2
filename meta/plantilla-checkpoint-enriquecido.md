@@ -5,7 +5,7 @@
 | Campo | Valor |
 |-------|-------|
 | **Fecha** | YYYY-MM-DD HH:mm |
-| **Agente** | [IMPLEMENTACION/CODEX/GEMINI] |
+| **Agente** | [SOFIA/INTEGRA/GEMINI/DEBY/CRONISTA] |
 | **Tiempo Invertido** | X horas Y minutos |
 | **Estado** | ✅ Completado / 🚧 En Progreso / ⚠️ Bloqueado |
 | **Sprint/Iteración** | Sprint X |
