@@ -1,4 +1,4 @@
-## 📘 ARQUITECTURA DISTRIBUIDA – SISTEMA INTEGRA EVOLUCIONADA v2.1
+## 📘 ARQUITECTURA DISTRIBUIDA – SISTEMA INTEGRA EVOLUCIONADA v2.1.1
 
 ### I. Principios Operativos Generales
 - **Metodología:** Integra Evolucionada.
@@ -261,11 +261,32 @@ Esta sección documenta el conjunto de mejoras implementadas para gestión de ta
 
 ---
 
-**Versión:** v2.1  
+**Versión:** v2.1.1  
 **Autor:** Frank Saavedra (Director de Proyecto)  
 **IA Participantes:** INTEGRA, SOFIA, GEMINI, DEBY, CRONISTA
 
 ### Registro de Cambios
+
+#### v2.1.1 (2025-12-26) - HOMOGENEIZACIÓN COMPLETA
+- 🔄 **Homogeneización total de nombres de agentes:**
+  - CODEX → INTEGRA (Arquitecto de Soluciones)
+  - IMPLEMENTACION → SOFIA (Constructora Principal)
+  - Actualizados 15+ archivos de metodología
+- 🆔 **Sistema de IDs extendido a todos los agentes:**
+  - ARCH-YYYYMMDD-NN para INTEGRA
+  - IMPL-YYYYMMDD-NN para SOFIA
+  - INFRA-YYYYMMDD-NN para GEMINI
+  - FIX-YYYYMMDD-NN para DEBY
+  - DOC-YYYYMMDD-NN para CRONISTA
+- 📁 **Nuevas carpetas de documentación:**
+  - context/handoffs/ para handoffs entre agentes
+  - context/interconsultas/ para dictámenes de DEBY
+  - context/infraestructura/ para configs de GEMINI
+- 📝 **Actualizados todos los templates:**
+  - Plantillas de checkpoint, control y SPEC
+  - Soft gates con nuevos agentes
+  - Sistema de estados con responsabilidades actualizadas
+  - ONBOARDING.md con flujo de 5 agentes
 
 #### v2.1 (2025-12-26) - ACTUALIZACIÓN DE AGENTES
 - ✨ **Sistema de 5 Agentes Especializados:**

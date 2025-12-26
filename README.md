@@ -289,6 +289,14 @@ Para reportar problemas o contribuir mejoras:
 
 ## Changelog de la Metodologia
 
+### v2.1.1 (2025-12-26)
+- Homogeneización completa: CODEX→INTEGRA, IMPLEMENTACION→SOFIA en 15+ archivos
+- Sistema de IDs extendido a todos los agentes (ARCH, IMPL, INFRA, FIX, DOC)
+- Nuevas carpetas: context/handoffs/, context/interconsultas/, context/infraestructura/
+- Actualizados todos los templates y documentos de calidad
+- ONBOARDING.md actualizado con flujo de 5 agentes
+- Sistema de estados con responsabilidades de DEBY y CRONISTA
+
 ### v2.1 (2025-12-26)
 - Sistema de 5 agentes especializados (INTEGRA, SOFIA, GEMINI, DEBY, CRONISTA)
 - Nuevo documento `meta/AGENTES.md` con documentación completa de agentes
@@ -318,7 +326,7 @@ Para reportar problemas o contribuir mejoras:
 
 ---
 
-**Version de la Plantilla:** 2.1  
+**Version de la Plantilla:** 2.1.1  
 **Fecha:** 2025-12-26  
 **Autor:** Frank Saavedra (Director de Proyecto)  
 **IAs Participantes:** INTEGRA, SOFIA, GEMINI, DEBY, CRONISTA
