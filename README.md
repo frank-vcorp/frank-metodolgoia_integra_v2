@@ -1,5 +1,7 @@
 # Metodologia Integra Evolucionada v2.1.1 - Plantilla de Proyecto
 
+> **🎯 ¿ERES NUEVO EN EL EQUIPO?** Lee primero **[ONBOARDING-HUMANOS.md](ONBOARDING-HUMANOS.md)** - Guía paso a paso para empezar (2 horas)
+
 Esta plantilla contiene todos los artefactos necesarios para implementar la **Metodologia Integra Evolucionada** en tus proyectos de desarrollo asistido por IA.
 
 ## Que es Integra Evolucionada
